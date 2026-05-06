@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#1a1a2e" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="description" content="qqqaaaa - مشروع متحرك بذاته" />
+  <title>qqqaaaa</title>
+  <style>
+    /* ===== Reset & Base ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0f0f1a;
+      --surface: #1a1a2e;
+      --primary: #e94560;
+      --accent: #16213e;
+      --text: #eaeaea;
+      --muted: #888;
+      --radius: 12px;
+      --shadow: 0 4px 24px rgba(0,0,0,.4);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      line-height: 1.7;
+    }
+
+    /* ===== Nav ===== */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15,15,26,.92);
+      backdrop-filter: blur(10px);
+      padding: .75rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ffffff14;
+    }
+
+    .logo { font-size: 1.4rem; font-weight: 700; color: var(--primary); letter-spacing: 2px; }
+
+    .nav-links { display: flex; gap: 1.2rem; list-style: none; }
+    .nav-links a { color: var(--text); text-decoration: none; font-size: .95rem; transition: color .2s; }
+    .nav-links a:hover { color: var(--primary); }
+
+    /* hamburger – mobile only */
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 25px; height: 3px; background: var(--text); border-radius: 3px; transition: .3s; }
+
+    /* ===== Hero ===== */
+    .hero {
+      text-align: center;
+      padding: 5rem 1.5rem 3rem;
+      background: radial-gradient(ellipse at center, #16213e 0%, var(--bg) 70%);
+    }
+    .hero h1 { font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 800; }
+    .hero h1 span { color: var(--primary); }
+    .hero p { color: var(--muted); margin-top: .75rem; font-size: clamp(.9rem, 2.5vw, 1.1rem); }
+
+    .pulse {
+      display: inline-block;
+      width: 14px; height: 14px;
+      background: #2ecc71;
+      border-radius: 50%;
+      margin-left: .4rem;
+      animation: pulse 1.4s infinite;
+      vertical-align: middle;
+    }
+    @keyframes pulse {
+      0%,100% { box-shadow: 0 0 0 0 rgba(46,204,113,.6); }
+      50%      { box-shadow: 0 0 0 10px rgba(46,204,113,0); }
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 1.8rem;
+      padding: .75rem 2rem;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 4px 20px rgba(233,69,96,.4);
+    }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 6px 28px rgba(233,69,96,.55); }
+
+    /* ===== Grid of Cards ===== */
+    .section { padding: 3rem 1.5rem; max-width: 1100px; margin: 0 auto; }
+    .section h2 { font-size: 1.6rem; margin-bottom: 1.5rem; border-right: 4px solid var(--primary); padding-right: .75rem; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      border: 1px solid #ffffff0f;
+      box-shadow: var(--shadow);
+      transition: transform .25s, border-color .25s;
+    }
+    .card:hover { transform: translateY(-4px); border-color: var(--primary); }
+    .card .icon { font-size: 2rem; margin-bottom: .6rem; }
+    .card h3 { font-size: 1.05rem; margin-bottom: .4rem; }
+    .card p { color: var(--muted); font-size: .9rem; }
+
+    /* ===== Status ===== */
+    #status-board {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      border: 1px solid #ffffff0f;
+    }
+    .status-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: .55rem 0;
+      border-bottom: 1px solid #ffffff0a;
+      font-size: .9rem;
+    }
+    .status-row:last-child { border-bottom: none; }
+    .badge {
+      padding: .25rem .7rem;
+      border-radius: 50px;
+      font-size: .75rem;
+      font-weight: 600;
+    }
+    .ok { background: #2ecc7122; color: #2ecc71; }
+    .warn { background: #f39c1222; color: #f39c12; }
+
+    /* ===== Wiki Quick-Links ===== */
+    .wiki-list { list-style: none; display: flex; flex-direction: column; gap: .6rem; }
+    .wiki-list li a {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .65rem 1rem;
+      background: var(--accent);
+      border-radius: 8px;
+      color: var(--text);
+      text-decoration: none;
+      font-size: .95rem;
+      transition: background .2s;
+    }
+    .wiki-list li a:hover { background: #1d2d50; }
+
+    /* ===== Footer ===== */
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: var(--muted);
+      font-size: .82rem;
+      border-top: 1px solid #ffffff0a;
+    }
+
+    /* ===== Mobile Responsive ===== */
+    @media (max-width: 640px) {
+      .nav-links { display: none; flex-direction: column; background: var(--surface); position: absolute; top: 60px; right: 0; left: 0; padding: 1rem 1.5rem; border-bottom: 1px solid #ffffff14; }
+      .nav-links.open { display: flex; }
+      .hamburger { display: flex; }
+      .hero { padding-top: 3.5rem; }
+      .section h2 { font-size: 1.3rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== Navigation ===== -->
+<nav>
+  <div class="logo">QQQAAAA</div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#features">المميزات</a></li>
+    <li><a href="#status">الحالة</a></li>
+    <li><a href="#wiki">Wiki</a></li>
+    <li><a href="https://github.com/doni108-bot/qqqaaaa" target="_blank">GitHub</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" aria-label="قائمة" role="button" tabindex="0">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ===== Hero ===== -->
+<section class="hero">
+  <h1>مشروع <span>QQQAAAA</span></h1>
+  <p>متحرك بذاته <span class="pulse"></span> — يعمل على كل الأجهزة والمتصفحات</p>
+  <a class="btn" href="https://github.com/doni108-bot/qqqaaaa" target="_blank">📂 عرض المستودع</a>
+</section>
+
+<!-- ===== Features ===== -->
+<section class="section" id="features">
+  <h2>المميزات</h2>
+  <div class="grid">
+    <div class="card"><div class="icon">📱</div><h3>دعم الجوالات</h3><p>تصميم متجاوب يعمل على جميع أحجام الشاشات والمتصفحات.</p></div>
+    <div class="card"><div class="icon">🤖</div><h3>أتمتة كاملة</h3><p>GitHub Actions تُشغّل الاختبارات والنشر تلقائياً عند كل تحديث.</p></div>
+    <div class="card"><div class="icon">📚</div><h3>توثيق Wiki</h3><p>توثيق شامل ومنظّم يمكن الوصول إليه من أي مكان.</p></div>
+    <div class="card"><div class="icon">⚡</div><h3>سريع وخفيف</h3><p>بدون مكتبات ثقيلة — HTML/CSS/JS خالص لأداء مثالي.</p></div>
+  </div>
+</section>
+
+<!-- ===== Status ===== -->
+<section class="section" id="status">
+  <h2>لوحة الحالة</h2>
+  <div id="status-board">
+    <div class="status-row"><span>🌐 GitHub Pages</span><span class="badge ok">✔ يعمل</span></div>
+    <div class="status-row"><span>🤖 GitHub Actions</span><span class="badge ok">✔ يعمل</span></div>
+    <div class="status-row"><span>📱 دعم الجوالات</span><span class="badge ok">✔ مفعّل</span></div>
+    <div class="status-row"><span>📚 Wiki</span><span class="badge ok">✔ متاح</span></div>
+    <div class="status-row"><span>🔒 الأمان</span><span class="badge warn">⚠ راجع الإعدادات</span></div>
+  </div>
+</section>
+
+<!-- ===== Wiki ===== -->
+<section class="section" id="wiki">
+  <h2>Wiki — روابط سريعة</h2>
+  <ul class="wiki-list">
+    <li><a href="docs/wiki.md">📖 دليل البدء السريع</a></li>
+    <li><a href="https://github.com/doni108-bot/qqqaaaa/wiki" target="_blank">🌍 GitHub Wiki (الموقع الرسمي)</a></li>
+    <li><a href="https://github.com/doni108-bot/qqqaaaa/issues" target="_blank">🐛 الإبلاغ عن مشكلة</a></li>
+    <li><a href="https://github.com/doni108-bot/qqqaaaa/actions" target="_blank">⚙️ سجل الأتمتة</a></li>
+  </ul>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <p>© 2026 doni108-bot · QQQAAAA · مبني بـ ❤️ للجوالات والمتصفحات</p>
+</footer>
+
+<script>
+  // Hamburger menu
+  const hamburger = document.getElementById('hamburger');
+  const navLinks  = document.getElementById('navLinks');
+  hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+  hamburger.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' ') navLinks.classList.toggle('open'); });
+
+  // Close nav when link clicked on mobile
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+</script>
+</body>
+</html>
