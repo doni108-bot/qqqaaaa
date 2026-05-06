@@ -1,6 +1,6 @@
 function initUI() {
-  var hamburger = document.getElementById('hamburger');
-  var navLinks  = document.getElementById('navLinks');
+  const hamburger = document.getElementById('hamburger');
+  const navLinks  = document.getElementById('navLinks');
 
   hamburger.addEventListener('click', function () {
     navLinks.classList.toggle('open');
