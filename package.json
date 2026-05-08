@@ -1,0 +1,14 @@
+{
+  "name": "qqqaaaa",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Minimal CLI for issue tyar",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "tyar": "./bin/tyar.js"
+  },
+  "scripts": {
+    "test": "node --test"
+  }
+}
