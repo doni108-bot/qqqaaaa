@@ -4,7 +4,6 @@ about: بلّغ عن مشكلة أو اقترح تحسينًا بشكل واضح
 title: '[Issue] '
 labels: bug, documentation, duplicate, enhancement, good first issue, help wanted,
   invalid, qq, question, wontfix
-assignees: Copilot, Codex
 
 ---
 
