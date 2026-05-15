@@ -36,5 +36,17 @@ Chrome · Safari · Firefox · Samsung Internet · Edge · Opera Mini
 qqqaaaa/
 ├── index.html          ← الصفحة الرئيسية
 ├── docs/wiki.md        ← التوثيق
+├── package.json        ← أوامر الاختبارات
+└── test/index.test.js  ← اختبارات الصفحة
 └── .github/workflows/  ← أتمتة النشر
+```
+
+---
+
+## ✅ الاختبارات
+
+لتشغيل اختبارات التغطية الخاصة بالصفحة:
+
+```bash
+npm test
 ```
