@@ -160,6 +160,59 @@
     }
     .wiki-list li a:hover { background: #1d2d50; }
 
+    /* ===== Timeline (What's New) ===== */
+    .timeline {
+      position: relative;
+      padding-right: 2rem;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--primary), transparent);
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 1.5rem;
+      padding-right: 2.5rem;
+    }
+    .timeline-item:last-child { margin-bottom: 0; }
+    .timeline-marker {
+      position: absolute;
+      right: -0.5rem;
+      top: 0.3rem;
+      width: 1rem;
+      height: 1rem;
+      background: var(--primary);
+      border-radius: 50%;
+      border: 3px solid var(--bg);
+      box-shadow: 0 0 0 3px var(--primary)33;
+    }
+    .timeline-content {
+      background: var(--surface);
+      padding: 1rem 1.25rem;
+      border-radius: var(--radius);
+      border: 1px solid #ffffff0f;
+      transition: transform .25s, border-color .25s;
+    }
+    .timeline-content:hover {
+      transform: translateX(-4px);
+      border-color: var(--primary);
+    }
+    .timeline-content h4 {
+      color: var(--primary);
+      font-size: .95rem;
+      margin-bottom: .4rem;
+    }
+    .timeline-content p {
+      color: var(--muted);
+      font-size: .9rem;
+      line-height: 1.5;
+    }
+
     /* ===== Footer ===== */
     footer {
       text-align: center;
@@ -187,6 +240,7 @@
   <ul class="nav-links" id="navLinks">
     <li><a href="#features">المميزات</a></li>
     <li><a href="#status">الحالة</a></li>
+    <li><a href="#new">الجديد</a></li>
     <li><a href="#wiki">Wiki</a></li>
     <li><a href="https://github.com/doni108-bot/qqqaaaa" target="_blank">GitHub</a></li>
   </ul>
@@ -222,6 +276,34 @@
     <div class="status-row"><span>📱 دعم الجوالات</span><span class="badge ok">✔ مفعّل</span></div>
     <div class="status-row"><span>📚 Wiki</span><span class="badge ok">✔ متاح</span></div>
     <div class="status-row"><span>🔒 الأمان</span><span class="badge warn">⚠ راجع الإعدادات</span></div>
+  </div>
+</section>
+
+<!-- ===== What's New ===== -->
+<section class="section" id="new">
+  <h2>🆕 ما الجديد؟</h2>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-marker"></div>
+      <div class="timeline-content">
+        <h4>مايو 2026</h4>
+        <p>تفعيل الإعداد التلقائي لـ GitHub Pages في سير العمل</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-marker"></div>
+      <div class="timeline-content">
+        <h4>أبريل 2026</h4>
+        <p>تحسين التصميم المتجاوب للأجهزة المحمولة</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-marker"></div>
+      <div class="timeline-content">
+        <h4>مارس 2026</h4>
+        <p>إطلاق النسخة الأولى من الموقع</p>
+      </div>
+    </div>
   </div>
 </section>
 
