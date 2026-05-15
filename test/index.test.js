@@ -56,7 +56,7 @@ class FakeElement {
   }
 
   addEventListener(type, handler) {
-    this.listeners[type] ??= [];
+    this.listeners[type] = this.listeners[type] || [];
     this.listeners[type].push(handler);
   }
 
@@ -75,7 +75,7 @@ function bootNavigationScript() {
   const hamburger = new FakeElement();
   const navLinks = new FakeElement();
 
-  navLinks.children = [new FakeElement(), new FakeElement(), new FakeElement(), new FakeElement()];
+  navLinks.children = Array.from({ length: 4 }, () => new FakeElement());
 
   const document = {
     getElementById(id) {
