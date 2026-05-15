@@ -7,7 +7,7 @@ const vm = require('node:vm');
 const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
 
 function getInlineScript() {
-  const match = html.match(/<script>([\s\S]*?)<\/script>/);
+  const match = html.match(/<script>([\s\S]*?)<\/script>/i);
 
   assert.ok(match, 'Expected an inline script in index.html');
   return match[1];
@@ -15,6 +15,13 @@ function getInlineScript() {
 
 function countMatches(pattern) {
   return [...html.matchAll(pattern)].length;
+}
+
+function getSection(sectionId) {
+  const match = html.match(new RegExp(`<section class="section" id="${sectionId}">([\\s\\S]*?)<\\/section>`));
+
+  assert.ok(match, `Expected section #${sectionId}`);
+  return match[1];
 }
 
 class FakeClassList {
@@ -109,9 +116,11 @@ test('core sections and navigation links remain available', () => {
 });
 
 test('feature cards, status rows, and wiki links are fully rendered', () => {
+  const wikiSection = getSection('wiki');
+
   assert.equal(countMatches(/<div class="card">/g), 4);
   assert.equal(countMatches(/<div class="status-row">/g), 5);
-  assert.equal(countMatches(/<li><a href=/g), 4);
+  assert.equal([...wikiSection.matchAll(/<li><a href=/g)].length, 4);
   assert.match(html, /<span class="badge warn">⚠ راجع الإعدادات<\/span>/);
   assert.match(html, /<li><a href="docs\/wiki\.md">📖 دليل البدء السريع<\/a><\/li>/);
   assert.match(html, /<li><a href="https:\/\/github\.com\/doni108-bot\/qqqaaaa\/actions" target="_blank">⚙️ سجل الأتمتة<\/a><\/li>/);
